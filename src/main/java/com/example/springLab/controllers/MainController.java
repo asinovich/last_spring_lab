@@ -3,7 +3,6 @@ package com.example.springLab.controllers;
 
 import com.example.springLab.classes.ResultOfTriangle;
 import com.example.springLab.classes.Triangle;
-import com.example.springLab.service.AppealsCounter;
 import com.example.springLab.service.TriangleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,20 +20,17 @@ public class MainController {
 
     private TriangleService service;
     private final Logger logger = LoggerFactory.getLogger(MainController.class);
-    private final AppealsCounter appealsCounter;
+
 
     @Autowired
-    public MainController(TriangleService service, AppealsCounter appealsCounter) {
+    public MainController(TriangleService service) {
         this.service = service;
-        this.appealsCounter = appealsCounter;
     }
 
     @GetMapping("/Triangle")
     public ResultOfTriangle getParameters(@RequestParam @Min(1) float sideFirst,
                                           @RequestParam @Min(1) float sideSecond,
                                           @RequestParam @Min(1) float sideThird) throws ConstraintViolationException, InterruptedException {
-        appealsCounter.addCounter();
-        logger.info("The number of requests to the service: " + appealsCounter.getCounter());
         return  service.calculate( new Triangle(sideFirst, sideSecond, sideThird));
     }
 

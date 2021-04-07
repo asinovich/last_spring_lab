@@ -43,4 +43,5 @@ class SpringLabApplicationTests {
 				.andExpect(status().isOk())
 				.andExpect(content().json("{perimeter:0.0,square:0.0,triangleExist:false}"));
 	}
+
 }

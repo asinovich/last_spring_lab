@@ -2,10 +2,11 @@ package com.example.springLab.classes;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Generated;
+import org.springframework.cache.annotation.Cacheable;
 
 @Data
 @AllArgsConstructor
+@Cacheable("triangleResult")
 public class ResultOfTriangle {
 
     final private boolean isTriangleExist;

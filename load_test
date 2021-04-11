@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "9b75a402-dd6c-4549-b294-faa6dd11f703",
+		"name": "load_test_lab",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "load_test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var num = 2000\r",
+							"for(let i = 0; i < num; i++){\r",
+							"pm.sendRequest(\"http://localhost:8080/Triangle?sideFirst=1&sideSecond=1&sideThird=2\", function (err, response) {\r",
+							"    console.log(response.json());\r",
+							"});\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Triangle?sideFirst=1&sideSecond=1&sideThird=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Triangle"
+					],
+					"query": [
+						{
+							"key": "sideFirst",
+							"value": "1"
+						},
+						{
+							"key": "sideSecond",
+							"value": "1"
+						},
+						{
+							"key": "sideThird",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -17,7 +17,7 @@ public class TriangleServiceImpl implements TriangleService {
 
     private final Logger logger = LoggerFactory.getLogger(TriangleServiceImpl.class);
     private final AppealsCounter appealsCounter;
-    private final ExecutorService executorService = Executors.newCachedThreadPool();
+    private final ExecutorService executorService = Executors.newFixedThreadPool(10);
 
 
 
@@ -26,7 +26,7 @@ public class TriangleServiceImpl implements TriangleService {
         executorService.submit(appealsCounter);
         if (triangle.checkingTriangle()) {
 
-            logger.info("Perimeter and square have been calculate SUCCESSFULLY");
+            logger.info( Thread.currentThread().getName() + ". Perimeter and square have been calculate SUCCESSFULLY");
             return new ResultOfTriangle(
                     true,
                     triangle.findPerimeter(),
